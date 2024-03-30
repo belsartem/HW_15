@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'io.qameta.allure' version '2.11.2'
 }
 
 group = 'qa.abels'
@@ -9,11 +10,51 @@ repositories {
     mavenCentral()
 }
 
+allure {
+    report {
+        version.set("2.25.0")
+    }
+    adapter {
+        aspectjWeaver.set(true)
+        frameworks {
+            junit5 {
+                adapterVersion.set("2.25.0")
+            }
+        }
+    }
+}
+
 dependencies {
-    testImplementation platform('org.junit:junit-bom:5.9.1')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation(
+            'org.junit.jupiter:junit-jupiter:5.10.1',
+            'com.codeborne:selenide:6.16.0',
+            'com.github.javafaker:javafaker:1.0.2',
+            "org.aeonbits.owner:owner:1.0.12",
+            'io.qameta.allure:allure-selenide:2.25.0'
+    )
+}
+
+compileTestJava {
+    options.encoding = 'UTF-8'
 }
 
 test {
     useJUnitPlatform()
+}
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+    systemProperties(System.getProperties())
+    testLogging {
+        lifecycle {
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
+    }
+}
+
+task demoqa_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("demoqa")
+    }
 }

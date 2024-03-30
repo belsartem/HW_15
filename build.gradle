@@ -10,8 +10,8 @@ repositories {
     mavenCentral()
 }
 
-def allureVersion = "2.21.0",
-    selenideVersion = "7.0.4"
+def allureVersion = "2.24.0",
+    selenideVersion = "7.0.6"
 
 allure {
     report {
@@ -29,16 +29,29 @@ allure {
 
 dependencies {
     testImplementation (
-            'com.github.javafaker:javafaker:1.0.2',
+            "com.github.javafaker:javafaker:1.0.2",
             "io.qameta.allure:allure-selenide:$allureVersion",
             "com.codeborne:selenide:$selenideVersion",
             "org.junit.jupiter:junit-jupiter:5.10.1",
-            'org.slf4j:slf4j-simple:2.0.7'
+            "org.slf4j:slf4j-simple:2.0.7",
+            "org.aeonbits.owner:owner:1.0.12",
     )
 }
 
 compileTestJava {
     options.encoding = 'UTF-8'
+}
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+    systemProperties(System.getProperties())
+
+    testLogging {
+        lifecycle {
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
+    }
 }
 
 task demoqa_test(type: Test) {

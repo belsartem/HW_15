@@ -16,6 +16,18 @@ public class BaseTest {
     @BeforeAll
     static void beforeAll() {
 
+
+
+/*        String browser = System.getProperty("browser", "chrome");
+        String browserVersion = System.getProperty("browser_version", "100.0");
+        String browserSize = System.getProperty("browser_size", "1920x1080");
+
+        String browserConfig = String.format("Browser: %s, version: %s, window size: %s",
+                browser, browserVersion, browserSize);
+
+        //gradle demoqa_test -Dbrowser=mozilla -Dbrowser_version=100.0 -Dbrowser_size=1080x720
+        System.out.println(browserConfig);*/
+
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1920x1080";
         Configuration.pageLoadStrategy = "eager";

@@ -1,4 +1,4 @@
-package qa.abels.utils;
+package utils;
 
 import com.github.javafaker.Faker;
 

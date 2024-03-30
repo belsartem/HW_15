@@ -1,8 +1,8 @@
-package qa.abels.pages;
+package pages;
 
 import com.codeborne.selenide.SelenideElement;
-import qa.abels.pages.components.CalendarComponent;
-import qa.abels.pages.components.ResultModalWindowComponent;
+import pages.components.CalendarComponent;
+import pages.components.ResultModalWindowComponent;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;

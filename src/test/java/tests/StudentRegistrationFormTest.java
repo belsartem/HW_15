@@ -1,4 +1,4 @@
-package qa.abels.tests;
+package tests;
 
 import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
@@ -12,12 +12,12 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import qa.abels.pages.RegistrationPage;
+import pages.RegistrationPage;
 
 import java.nio.charset.StandardCharsets;
 
 import static io.qameta.allure.Allure.step;
-import static qa.abels.utils.RandomDataGenerator.*;
+import static utils.RandomDataGenerator.*;
 
 @DisplayName("Registration Form Student Tests")
 public class StudentRegistrationFormTest extends BaseTest {
